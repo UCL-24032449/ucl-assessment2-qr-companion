@@ -1,0 +1,9 @@
+.DS_Store
+
+# Local working files and generated handoff artifacts
+work/
+outputs/
+
+# Dependency/cache folders if tooling is added later
+node_modules/
+.wrangler/

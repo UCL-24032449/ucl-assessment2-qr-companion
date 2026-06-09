@@ -1,0 +1,2064 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Clearing the way for buses | Team Central 1-16</title>
+  <meta name="description" content="One-page QR companion site for Team Central 1-16's UCL Assessment 2 poster on empty-mileage fees and geofenced no-stopping on Westminster bus corridors.">
+  <style>
+    :root {
+      --navy: #071f3a;
+      --navy-2: #0b2f55;
+      --blue: #0072ce;
+      --blue-2: #2b8bdc;
+      --red: #d21f3c;
+      --amber: #f6b221;
+      --green: #18864b;
+      --ink: #142033;
+      --muted: #5e6876;
+      --line: #d9e0e8;
+      --paper: #f4f7fa;
+      --card: #ffffff;
+      --card-soft: #edf2f7;
+      --shadow: 0 16px 38px rgba(7, 31, 58, 0.12);
+      --shadow-soft: 0 8px 24px rgba(7, 31, 58, 0.08);
+      --radius: 8px;
+      --max: 1180px;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      margin: 0;
+      color: var(--ink);
+      background: var(--paper);
+      font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      line-height: 1.58;
+      letter-spacing: 0;
+    }
+
+    a {
+      color: var(--blue);
+      text-decoration: none;
+    }
+
+    a:hover {
+      text-decoration: underline;
+    }
+
+    :focus-visible {
+      outline: 3px solid rgba(0, 114, 206, 0.4);
+      outline-offset: 3px;
+    }
+
+    .sr-only {
+      position: absolute;
+      width: 1px;
+      height: 1px;
+      padding: 0;
+      margin: -1px;
+      overflow: hidden;
+      clip: rect(0, 0, 0, 0);
+      white-space: nowrap;
+      border: 0;
+    }
+
+    .skip-link {
+      position: absolute;
+      top: -4rem;
+      left: 1rem;
+      z-index: 30;
+      padding: 0.7rem 1rem;
+      border-radius: var(--radius);
+      color: var(--navy);
+      background: white;
+      box-shadow: var(--shadow);
+      transition: top 160ms ease;
+    }
+
+    .skip-link:focus {
+      top: 1rem;
+    }
+
+    .progress {
+      position: fixed;
+      inset: 0 0 auto 0;
+      z-index: 40;
+      height: 4px;
+      background: linear-gradient(90deg, var(--red), var(--amber), var(--green), var(--blue));
+      transform: scaleX(0);
+      transform-origin: left;
+    }
+
+    .topbar {
+      position: sticky;
+      top: 0;
+      z-index: 25;
+      color: white;
+      background: rgba(7, 31, 58, 0.97);
+      border-bottom: 1px solid rgba(255, 255, 255, 0.12);
+      backdrop-filter: blur(14px);
+    }
+
+    .nav-inner {
+      max-width: var(--max);
+      margin: 0 auto;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 1rem;
+      padding: 0.75rem 1rem;
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      min-width: 0;
+      color: white;
+    }
+
+    .brand-title {
+      display: grid;
+      gap: 0.05rem;
+      min-width: 0;
+      font-weight: 850;
+      line-height: 1.15;
+    }
+
+    .brand-title span {
+      color: rgba(255, 255, 255, 0.72);
+      font-size: 0.76rem;
+      font-weight: 650;
+    }
+
+    .menu-toggle {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 2.6rem;
+      height: 2.6rem;
+      border: 1px solid rgba(255, 255, 255, 0.22);
+      border-radius: var(--radius);
+      color: white;
+      background: rgba(255, 255, 255, 0.08);
+      font: inherit;
+      cursor: pointer;
+    }
+
+    .menu-toggle svg,
+    .back-to-top svg {
+      width: 1.2rem;
+      height: 1.2rem;
+      stroke: currentColor;
+      stroke-width: 2.2;
+      fill: none;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+    }
+
+    .nav-menu {
+      display: none;
+      max-width: var(--max);
+      margin: 0 auto;
+      padding: 0 1rem 1rem;
+    }
+
+    .nav-menu.is-open {
+      display: grid;
+      gap: 0.55rem;
+    }
+
+    .nav-group {
+      border: 1px solid rgba(255, 255, 255, 0.12);
+      border-radius: var(--radius);
+      background: rgba(255, 255, 255, 0.06);
+    }
+
+    .nav-group summary {
+      list-style: none;
+      cursor: pointer;
+      padding: 0.72rem 0.85rem;
+      color: white;
+      font-weight: 850;
+    }
+
+    .nav-group summary::-webkit-details-marker {
+      display: none;
+    }
+
+    .nav-group summary::after {
+      content: "+";
+      float: right;
+      color: rgba(255, 255, 255, 0.78);
+    }
+
+    .nav-group[open] summary::after {
+      content: "-";
+    }
+
+    .nav-sub {
+      display: grid;
+      gap: 0.1rem;
+      padding: 0 0.55rem 0.55rem;
+    }
+
+    .nav-sub a {
+      display: block;
+      padding: 0.5rem 0.55rem;
+      border-radius: 6px;
+      color: rgba(255, 255, 255, 0.82);
+      font-size: 0.9rem;
+      font-weight: 700;
+    }
+
+    .nav-sub a:hover,
+    .nav-sub a[aria-current="true"] {
+      color: white;
+      background: rgba(0, 114, 206, 0.34);
+      text-decoration: none;
+    }
+
+    .hero {
+      color: white;
+      background:
+        linear-gradient(135deg, rgba(0, 114, 206, 0.24), transparent 34rem),
+        linear-gradient(150deg, var(--navy), #0a294b 56%, #041426);
+      overflow: hidden;
+    }
+
+    .hero-inner {
+      max-width: var(--max);
+      margin: 0 auto;
+      display: grid;
+      gap: 2rem;
+      align-items: center;
+      padding: 4.8rem 1rem 3.4rem;
+    }
+
+    .eyebrow {
+      display: inline-flex;
+      width: fit-content;
+      align-items: center;
+      gap: 0.45rem;
+      padding: 0.35rem 0.62rem;
+      border: 1px solid rgba(255, 255, 255, 0.24);
+      border-radius: 999px;
+      color: rgba(255, 255, 255, 0.86);
+      background: rgba(255, 255, 255, 0.08);
+      font-size: 0.82rem;
+      font-weight: 800;
+    }
+
+    .route-pill {
+      display: inline-grid;
+      place-items: center;
+      min-width: 1.65rem;
+      height: 1.65rem;
+      border-radius: 50%;
+      color: white;
+      background: var(--red);
+      font-weight: 950;
+    }
+
+    h1,
+    h2,
+    h3 {
+      margin: 0;
+      letter-spacing: 0;
+      line-height: 1.12;
+    }
+
+    h1 {
+      max-width: 13ch;
+      margin: 1.05rem 0 0.7rem;
+      font-size: clamp(3rem, 11vw, 6.4rem);
+      line-height: 0.92;
+    }
+
+    h2 {
+      color: var(--navy);
+      font-size: clamp(1.85rem, 5.6vw, 3.15rem);
+    }
+
+    h3 {
+      color: var(--navy);
+      font-size: 1.15rem;
+    }
+
+    p {
+      margin: 0;
+    }
+
+    .hero-subtitle {
+      max-width: 780px;
+      color: rgba(255, 255, 255, 0.9);
+      font-size: clamp(1.05rem, 2.7vw, 1.45rem);
+      font-weight: 720;
+    }
+
+    .summary {
+      max-width: 780px;
+      margin-top: 1rem;
+      color: rgba(255, 255, 255, 0.82);
+      font-size: 1rem;
+    }
+
+    .team-line {
+      margin-top: 1rem;
+      color: rgba(255, 255, 255, 0.75);
+      font-size: 0.94rem;
+    }
+
+    .hero-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.65rem;
+      margin-top: 1.25rem;
+    }
+
+    .button {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 2.85rem;
+      padding: 0.75rem 1rem;
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      border-radius: var(--radius);
+      color: white;
+      background: rgba(255, 255, 255, 0.1);
+      font-weight: 850;
+    }
+
+    .button.primary {
+      color: white;
+      background: var(--blue);
+      border-color: var(--blue);
+    }
+
+    .button:hover {
+      transform: translateY(-1px);
+      box-shadow: 0 10px 22px rgba(0, 0, 0, 0.18);
+      text-decoration: none;
+    }
+
+    .map-card {
+      min-width: 0;
+      padding: 1rem;
+      border: 1px solid rgba(255, 255, 255, 0.22);
+      border-radius: var(--radius);
+      background: rgba(255, 255, 255, 0.96);
+      box-shadow: 0 20px 60px rgba(0, 0, 0, 0.2);
+    }
+
+    .map-card img {
+      display: block;
+      width: 100%;
+      height: auto;
+      border-radius: var(--radius);
+      background: #f8fafb;
+      object-fit: contain;
+    }
+
+    .caption {
+      margin-top: 0.75rem;
+      color: var(--muted);
+      font-size: 0.84rem;
+    }
+
+    .source-note {
+      margin: 0.35rem 0 0;
+      color: #6b7481;
+      font-size: 0.74rem;
+      line-height: 1.48;
+    }
+
+    main {
+      min-width: 0;
+    }
+
+    [id] {
+      scroll-margin-top: 6rem;
+    }
+
+    .section {
+      min-width: 0;
+      scroll-margin-top: 6rem;
+      padding: 4rem 1rem;
+    }
+
+    main > .section:nth-child(even) {
+      background: white;
+    }
+
+    .section-inner {
+      max-width: var(--max);
+      min-width: 0;
+      margin: 0 auto;
+    }
+
+    .section-head {
+      display: grid;
+      gap: 0.72rem;
+      max-width: 870px;
+      margin-bottom: 1.5rem;
+    }
+
+    .section-label {
+      color: var(--blue);
+      font-size: 0.8rem;
+      font-weight: 950;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+    }
+
+    .lede {
+      color: var(--muted);
+      font-size: 1.04rem;
+    }
+
+    .grid {
+      display: grid;
+      min-width: 0;
+      gap: 1rem;
+    }
+
+    .grid.two,
+    .grid.three,
+    .grid.four {
+      grid-template-columns: 1fr;
+    }
+
+    .card,
+    .soft-panel {
+      min-width: 0;
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      background: var(--card);
+      box-shadow: var(--shadow-soft);
+    }
+
+    .card {
+      padding: 1.05rem;
+      transition: transform 180ms ease, box-shadow 180ms ease, border-color 180ms ease;
+    }
+
+    .card:hover {
+      transform: translateY(-2px);
+      border-color: rgba(0, 114, 206, 0.34);
+      box-shadow: var(--shadow);
+    }
+
+    .card h3 {
+      margin-bottom: 0.55rem;
+    }
+
+    .stat-card {
+      position: relative;
+      overflow: hidden;
+      min-height: 9.3rem;
+      border-top: 4px solid var(--blue);
+    }
+
+    .stat-card:nth-child(2) {
+      border-top-color: var(--red);
+    }
+
+    .stat-card:nth-child(3) {
+      border-top-color: var(--green);
+    }
+
+    .stat-card:nth-child(4) {
+      border-top-color: var(--amber);
+    }
+
+    .stat-value {
+      display: inline-flex;
+      color: var(--navy);
+      font-size: clamp(2.1rem, 10vw, 3.25rem);
+      font-weight: 950;
+      line-height: 1;
+      margin-bottom: 0.45rem;
+    }
+
+    .stat-label {
+      display: block;
+      color: var(--muted);
+      font-weight: 720;
+    }
+
+    .data-panel {
+      padding: 1rem;
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      background: linear-gradient(180deg, white, #f9fbfd);
+      box-shadow: var(--shadow-soft);
+    }
+
+    .bar-chart {
+      display: grid;
+      gap: 0.75rem;
+      margin-top: 0.8rem;
+    }
+
+    .bar-row {
+      display: grid;
+      gap: 0.32rem;
+    }
+
+    .bar-top {
+      display: flex;
+      justify-content: space-between;
+      gap: 1rem;
+      color: var(--muted);
+      font-size: 0.88rem;
+      font-weight: 780;
+    }
+
+    .bar-track {
+      height: 0.85rem;
+      overflow: hidden;
+      border-radius: 999px;
+      background: #dce5ee;
+    }
+
+    .bar-fill {
+      height: 100%;
+      border-radius: inherit;
+      background: var(--blue);
+    }
+
+    .bar-fill.red {
+      background: var(--red);
+    }
+
+    .circle-stat {
+      --value: 28;
+      display: grid;
+      grid-template-columns: auto 1fr;
+      gap: 1rem;
+      align-items: center;
+      margin-top: 0.8rem;
+    }
+
+    .ring {
+      display: grid;
+      place-items: center;
+      width: 6rem;
+      height: 6rem;
+      border-radius: 50%;
+      background: conic-gradient(var(--red) calc(var(--value) * 1%), #dfe8f1 0);
+      color: var(--navy);
+      font-weight: 950;
+    }
+
+    .ring span {
+      display: grid;
+      place-items: center;
+      width: 4.35rem;
+      height: 4.35rem;
+      border-radius: 50%;
+      background: white;
+    }
+
+    .table-wrap {
+      max-width: 100%;
+      min-width: 0;
+      overflow-x: auto;
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      background: white;
+      box-shadow: var(--shadow-soft);
+    }
+
+    table {
+      width: 100%;
+      min-width: 760px;
+      border-collapse: collapse;
+    }
+
+    th,
+    td {
+      padding: 0.85rem;
+      border-bottom: 1px solid var(--line);
+      text-align: left;
+      vertical-align: top;
+    }
+
+    th {
+      color: var(--navy);
+      background: #e9f0f7;
+      font-size: 0.78rem;
+      font-weight: 900;
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+    }
+
+    tr:last-child td {
+      border-bottom: 0;
+    }
+
+    .tag {
+      display: inline-flex;
+      width: fit-content;
+      align-items: center;
+      padding: 0.2rem 0.5rem;
+      border-radius: 999px;
+      color: var(--navy);
+      background: #e7f2fc;
+      font-size: 0.78rem;
+      font-weight: 850;
+    }
+
+    .copy-stack {
+      display: grid;
+      gap: 1rem;
+    }
+
+    .copy-stack p {
+      max-width: 880px;
+    }
+
+    .objectives {
+      margin-top: 1.5rem;
+    }
+
+    .stakeholder-card {
+      display: grid;
+      gap: 0.6rem;
+    }
+
+    .risk,
+    .mitigation {
+      padding: 0.7rem;
+      border-radius: var(--radius);
+    }
+
+    .risk {
+      border-left: 4px solid var(--amber);
+      background: #fff5dc;
+    }
+
+    .mitigation {
+      border-left: 4px solid var(--green);
+      background: #e8f6ef;
+    }
+
+    .intervention-card {
+      border-top: 4px solid var(--blue);
+    }
+
+    .intervention-card:nth-child(2) {
+      border-top-color: var(--red);
+    }
+
+    .intervention-card:nth-child(3) {
+      border-top-color: var(--green);
+    }
+
+    .bullets {
+      margin: 0.65rem 0 0;
+      padding-left: 1.05rem;
+    }
+
+    .bullets li {
+      margin: 0.33rem 0;
+    }
+
+    .flow {
+      display: grid;
+      gap: 0.72rem;
+      padding: 1rem;
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      background:
+        linear-gradient(180deg, rgba(0, 114, 206, 0.06), rgba(7, 31, 58, 0.02)),
+        white;
+      box-shadow: var(--shadow-soft);
+    }
+
+    .flow-node {
+      position: relative;
+      padding: 0.9rem;
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      background: white;
+      font-weight: 780;
+    }
+
+    .flow-node.start {
+      color: white;
+      border-color: var(--navy);
+      background: var(--navy);
+    }
+
+    .flow-node.question {
+      border-color: rgba(246, 178, 33, 0.8);
+      background: #fff8e8;
+    }
+
+    .flow-node.allow {
+      border-color: rgba(24, 134, 75, 0.4);
+      background: #e9f8ef;
+    }
+
+    .flow-node.restrict {
+      border-color: rgba(210, 31, 60, 0.32);
+      background: #fff0f3;
+    }
+
+    .answer {
+      display: inline-block;
+      margin-bottom: 0.25rem;
+      color: var(--blue);
+      font-size: 0.76rem;
+      font-weight: 950;
+      letter-spacing: 0.07em;
+      text-transform: uppercase;
+    }
+
+    .pros-cons {
+      display: grid;
+      gap: 1rem;
+    }
+
+    .pros-cons .card:first-child {
+      border-top: 4px solid var(--green);
+    }
+
+    .pros-cons .card:last-child {
+      border-top: 4px solid var(--amber);
+    }
+
+    .comparison-block {
+      margin-top: 1.8rem;
+    }
+
+    .comparison-grid {
+      display: grid;
+      gap: 1rem;
+    }
+
+    .comparison-panel {
+      overflow: hidden;
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      background: white;
+      box-shadow: var(--shadow-soft);
+    }
+
+    .comparison-heading {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 1rem;
+      padding: 0.85rem 1rem;
+      border-bottom: 1px solid var(--line);
+      background: #f8fafc;
+    }
+
+    .comparison-heading h3 {
+      margin: 0;
+    }
+
+    .comparison-status {
+      display: inline-flex;
+      align-items: center;
+      width: fit-content;
+      padding: 0.2rem 0.55rem;
+      border-radius: 999px;
+      color: white;
+      background: var(--red);
+      font-size: 0.76rem;
+      font-weight: 900;
+      white-space: nowrap;
+    }
+
+    .comparison-panel.after .comparison-status {
+      background: var(--green);
+    }
+
+    .street-svg {
+      display: block;
+      width: 100%;
+      height: auto;
+      background: #edf2f6;
+    }
+
+    .street-label {
+      fill: #526172;
+      font-family: Inter, Arial, sans-serif;
+      font-size: 15px;
+      font-weight: 800;
+    }
+
+    .vehicle {
+      transform-box: fill-box;
+      transform-origin: center;
+    }
+
+    .bus-before {
+      animation: busBefore 8.5s ease-in-out infinite;
+    }
+
+    .bus-after {
+      animation: busAfter 6.5s linear infinite;
+    }
+
+    .phv-before-moving {
+      animation: phvBeforeMoving 8.5s ease-in-out infinite;
+    }
+
+    .callout-line {
+      stroke-dasharray: 4 5;
+      animation: calloutDash 2.4s linear infinite;
+    }
+
+    @keyframes busBefore {
+      0% { transform: translate(-170px, 0); opacity: 0; }
+      8% { transform: translate(-100px, 0); opacity: 1; }
+      25% { transform: translate(140px, 0); }
+      36% { transform: translate(250px, -58px); }
+      50% { transform: translate(310px, -58px); }
+      68% { transform: translate(405px, -58px); }
+      86% { transform: translate(530px, -58px); opacity: 1; }
+      100% { transform: translate(680px, -58px); opacity: 0; }
+    }
+
+    @keyframes busAfter {
+      0% { transform: translate(-155px, 0); opacity: 0; }
+      8% { transform: translate(-80px, 0); opacity: 1; }
+      48% { transform: translate(285px, 0); }
+      86% { transform: translate(560px, 0); opacity: 1; }
+      100% { transform: translate(650px, 0); opacity: 0; }
+    }
+
+    @keyframes phvBeforeMoving {
+      0% { transform: translate(-380px, 0); opacity: 0; }
+      8% { transform: translate(-160px, 0); opacity: 1; }
+      25% { transform: translate(40px, 0); }
+      42% { transform: translate(200px, 0); }
+      62% { transform: translate(315px, 0); }
+      82% { transform: translate(430px, 0); opacity: 1; }
+      100% { transform: translate(650px, 0); opacity: 0; }
+    }
+
+    @keyframes calloutDash {
+      to {
+        stroke-dashoffset: -36;
+      }
+    }
+
+    .roadmap {
+      display: grid;
+      gap: 0.9rem;
+      margin-bottom: 1.4rem;
+    }
+
+    .roadmap-item {
+      display: grid;
+      gap: 0.55rem;
+      padding: 1rem;
+      border-left: 5px solid var(--blue);
+      border-radius: var(--radius);
+      background: white;
+      box-shadow: var(--shadow-soft);
+    }
+
+    .roadmap-item:nth-child(2) {
+      border-left-color: var(--red);
+    }
+
+    .roadmap-item:nth-child(3) {
+      border-left-color: var(--amber);
+    }
+
+    .roadmap-item:nth-child(4) {
+      border-left-color: var(--green);
+    }
+
+    .roadmap-item b {
+      color: var(--navy);
+    }
+
+    .priority-card {
+      display: grid;
+      grid-template-columns: auto 1fr;
+      gap: 0.75rem;
+      align-items: start;
+    }
+
+    .line-icon {
+      display: grid;
+      place-items: center;
+      width: 2.35rem;
+      height: 2.35rem;
+      border-radius: var(--radius);
+      color: var(--blue);
+      background: #e7f2fc;
+      font-weight: 950;
+    }
+
+    .metric-dashboard {
+      display: grid;
+      gap: 1rem;
+    }
+
+    .metric-card {
+      display: grid;
+      gap: 0.5rem;
+      min-height: 10.3rem;
+      padding: 1rem;
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      background: white;
+      box-shadow: var(--shadow-soft);
+    }
+
+    .metric-lights {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 0.35rem;
+      margin-top: auto;
+    }
+
+    .light {
+      min-height: 2.6rem;
+      padding: 0.35rem;
+      border-radius: 6px;
+      color: white;
+      font-size: 0.72rem;
+      font-weight: 850;
+      line-height: 1.2;
+    }
+
+    .light.green { background: var(--green); }
+    .light.amber { color: #342300; background: var(--amber); }
+    .light.red { background: var(--red); }
+
+    details.accordion {
+      max-width: 100%;
+      min-width: 0;
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      background: white;
+      box-shadow: var(--shadow-soft);
+    }
+
+    details.accordion + details.accordion {
+      margin-top: 0.8rem;
+    }
+
+    details.accordion summary {
+      cursor: pointer;
+      list-style: none;
+      padding: 1rem;
+      color: var(--navy);
+      font-weight: 900;
+    }
+
+    details.accordion summary::-webkit-details-marker {
+      display: none;
+    }
+
+    details.accordion summary::after {
+      content: "+";
+      float: right;
+      color: var(--blue);
+      font-weight: 950;
+    }
+
+    details.accordion[open] summary::after {
+      content: "-";
+    }
+
+    .accordion-body {
+      display: grid;
+      gap: 1rem;
+      min-width: 0;
+      padding: 0 1rem 1rem;
+    }
+
+    .evidence-list {
+      display: grid;
+      gap: 0.75rem;
+    }
+
+    .evidence-item {
+      display: grid;
+      grid-template-columns: auto 1fr;
+      gap: 0.75rem;
+      align-items: start;
+      padding: 0.85rem;
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      background: #fbfdff;
+    }
+
+    .year {
+      display: grid;
+      place-items: center;
+      min-width: 4.2rem;
+      min-height: 2.2rem;
+      border-radius: var(--radius);
+      color: white;
+      background: var(--navy);
+      font-size: 0.82rem;
+      font-weight: 950;
+    }
+
+    .references {
+      display: grid;
+      gap: 0.82rem;
+      margin: 0;
+      padding: 0;
+      list-style: none;
+    }
+
+    .references li {
+      overflow-wrap: anywhere;
+      padding: 0.8rem;
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      background: #fbfdff;
+    }
+
+    .ref-label {
+      display: inline-block;
+      min-width: 3.2rem;
+      color: var(--navy);
+      font-weight: 950;
+    }
+
+    .gai-box {
+      padding: 1rem;
+      border-left: 5px solid var(--blue);
+      border-radius: var(--radius);
+      background: #fbfdff;
+    }
+
+    .fade-in {
+      opacity: 0;
+      transform: translateY(14px);
+      transition: opacity 520ms ease, transform 520ms ease;
+    }
+
+    .fade-in.is-visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    .back-to-top {
+      position: fixed;
+      right: 1rem;
+      bottom: 1rem;
+      z-index: 20;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 2.8rem;
+      height: 2.8rem;
+      border: 0;
+      border-radius: 50%;
+      color: white;
+      background: var(--blue);
+      box-shadow: var(--shadow);
+      cursor: pointer;
+      opacity: 0;
+      pointer-events: none;
+      transform: translateY(8px);
+      transition: opacity 180ms ease, transform 180ms ease;
+    }
+
+    .back-to-top.is-visible {
+      opacity: 1;
+      pointer-events: auto;
+      transform: translateY(0);
+    }
+
+    .site-footer {
+      padding: 2rem 1rem;
+      color: rgba(255, 255, 255, 0.78);
+      background: var(--navy);
+    }
+
+    .footer-inner {
+      max-width: var(--max);
+      margin: 0 auto;
+      display: grid;
+      gap: 0.35rem;
+    }
+
+    .footer-inner b {
+      color: white;
+    }
+
+    @media (min-width: 820px) {
+      .menu-toggle {
+        display: none;
+      }
+
+      .nav-menu {
+        display: flex;
+        align-items: stretch;
+        justify-content: flex-end;
+        gap: 0.45rem;
+        max-width: none;
+        margin: 0;
+        padding: 0;
+      }
+
+      .nav-group {
+        position: relative;
+      }
+
+      .nav-group summary {
+        padding: 0.58rem 0.75rem;
+      }
+
+      .nav-sub {
+        position: absolute;
+        top: calc(100% + 0.45rem);
+        right: 0;
+        z-index: 5;
+        display: none;
+        min-width: 15.5rem;
+        padding: 0.5rem;
+        border: 1px solid var(--line);
+        border-radius: var(--radius);
+        background: white;
+        box-shadow: var(--shadow);
+      }
+
+      .nav-group[open] .nav-sub {
+        display: grid;
+      }
+
+      .nav-sub a {
+        color: var(--ink);
+      }
+
+      .nav-sub a:hover,
+      .nav-sub a[aria-current="true"] {
+        color: var(--navy);
+        background: #e7f2fc;
+      }
+
+      .hero-inner {
+        grid-template-columns: minmax(0, 1.08fr) minmax(360px, 0.92fr);
+        padding: 5.6rem 1.25rem 4.2rem;
+      }
+
+      .section {
+        padding: 4.8rem 1.25rem;
+      }
+
+      .grid.two {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+
+      .grid.three {
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+      }
+
+      .grid.four {
+        grid-template-columns: repeat(4, minmax(0, 1fr));
+      }
+
+      .flow {
+        grid-template-columns: repeat(4, minmax(0, 1fr));
+      }
+
+      .flow-node.start { grid-column: 1 / 2; }
+      .flow-node.question.one { grid-column: 2 / 4; }
+      .flow-node.pass { grid-column: 4 / 5; }
+      .flow-node.enroute { grid-column: 2 / 3; }
+      .flow-node.no-fee { grid-column: 3 / 4; }
+      .flow-node.fee { grid-column: 4 / 5; }
+      .flow-node.question.two { grid-column: 1 / 3; }
+      .flow-node.exempt { grid-column: 3 / 4; }
+      .flow-node.pickup { grid-column: 4 / 5; }
+
+      .pros-cons {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+
+      .comparison-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+
+      .roadmap {
+        grid-template-columns: repeat(4, minmax(0, 1fr));
+        position: relative;
+      }
+
+      .roadmap::before {
+        content: "";
+        position: absolute;
+        left: 6%;
+        right: 6%;
+        top: 1.25rem;
+        height: 3px;
+        border-radius: 999px;
+        background: linear-gradient(90deg, var(--blue), var(--red), var(--amber), var(--green));
+      }
+
+      .roadmap-item {
+        position: relative;
+        padding-top: 2.2rem;
+        border-left: 0;
+        border-top: 5px solid var(--blue);
+      }
+
+      .roadmap-item:nth-child(2) { border-top-color: var(--red); }
+      .roadmap-item:nth-child(3) { border-top-color: var(--amber); }
+      .roadmap-item:nth-child(4) { border-top-color: var(--green); }
+
+      .metric-dashboard {
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+      }
+    }
+
+    @media (max-width: 819px) {
+      .topbar .nav-inner {
+        flex-wrap: nowrap;
+      }
+
+      .brand-title {
+        font-size: 0.9rem;
+      }
+
+      .nav-menu {
+        border-top: 1px solid rgba(255, 255, 255, 0.1);
+      }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      html {
+        scroll-behavior: auto;
+      }
+
+      *,
+      *::before,
+      *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+      }
+
+      .bus-before,
+      .bus-after,
+      .phv-before-moving,
+      .callout-line {
+        animation: none !important;
+        opacity: 1 !important;
+        transform: none !important;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="progress" aria-hidden="true"></div>
+  <a class="skip-link" href="#main">Skip to content</a>
+
+  <nav class="topbar" aria-label="Primary navigation">
+    <div class="nav-inner">
+      <a class="brand" href="#overview" aria-label="Team Central 1-16 overview">
+        <span class="brand-title">Team Central 1-16 <span>Public poster companion</span></span>
+      </a>
+      <button class="menu-toggle" type="button" aria-expanded="false" aria-controls="nav-menu" aria-label="Open navigation">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 7h16M4 12h16M4 17h16"/></svg>
+      </button>
+      <div class="nav-menu" id="nav-menu">
+        <details class="nav-group">
+          <summary>Overview</summary>
+          <div class="nav-sub">
+            <a href="#overview">Project summary</a>
+            <a href="#key-figures">Key figures</a>
+            <a href="#homepage-map">Homepage map</a>
+          </div>
+        </details>
+        <details class="nav-group">
+          <summary>Problem &amp; People</summary>
+          <div class="nav-sub">
+            <a href="#problem">Problem</a>
+            <a href="#aims">Aims</a>
+            <a href="#stakeholders">Stakeholders</a>
+          </div>
+        </details>
+        <details class="nav-group">
+          <summary>Solution</summary>
+          <div class="nav-sub">
+            <a href="#how-it-works">How it works</a>
+            <a href="#exemptions">Exemptions</a>
+            <a href="#before-after">Before vs After animation</a>
+            <a href="#trade-offs">Pros, cons &amp; trade-offs</a>
+          </div>
+        </details>
+        <details class="nav-group">
+          <summary>Implementation &amp; Pilot</summary>
+          <div class="nav-sub">
+            <a href="#road-map">Project road map</a>
+            <a href="#pilot-design">Pilot design</a>
+            <a href="#metrics">Metrics</a>
+            <a href="#monitoring">Monitoring</a>
+          </div>
+        </details>
+        <details class="nav-group">
+          <summary>Evidence &amp; References</summary>
+          <div class="nav-sub">
+            <a href="#previous-attempts">Previous attempts</a>
+            <a href="#poster-references">Poster references</a>
+            <a href="#extended-references">Extended references</a>
+            <a href="#gai-statement">GAI statement</a>
+          </div>
+        </details>
+      </div>
+    </div>
+  </nav>
+
+  <header class="hero section" id="overview">
+    <div class="hero-inner">
+      <div>
+        <span class="eyebrow"><span class="route-pill" aria-hidden="true">P</span> QR companion site for UCL Assessment 2 poster</span>
+        <h1>Clearing the way for buses</h1>
+        <p class="hero-subtitle">Empty-mileage fees and geofenced no-stopping on Westminster bus corridors.</p>
+        <p class="summary">We propose a targeted Westminster pilot that charges avoidable empty PHV mileage and prevents non-essential PHV stopping on bus corridors, aiming to improve bus reliability while protecting accessibility and driver livelihoods.</p>
+        <p class="team-line"><b>Team Central 1-16:</b> Chris Dermentzoglou, Eugene Lewis, Jade Hu, Qian Lin, Saanvi Kanodia, Yuxin Chen.</p>
+        <div class="hero-actions">
+          <a class="button primary" href="#metrics">View pilot metrics</a>
+          <a class="button" href="#poster-references">View references</a>
+          <a class="button" href="#gai-statement">View GAI statement</a>
+        </div>
+      </div>
+
+      <aside class="map-card" id="homepage-map" aria-labelledby="map-title">
+        <h2 class="sr-only" id="map-title">Westminster pilot focus area map</h2>
+        <img
+          src="assets/pilot-focus-map.png"
+          width="1672"
+          height="941"
+          alt="Map of Westminster showing the pilot focus area around Piccadilly Circus, Regent Street South, Piccadilly and Haymarket."
+        />
+        <p class="caption">Indicative pilot focus area in Westminster: Piccadilly Circus / Regent Street South / Haymarket.</p>
+        <p class="source-note">Image source: AI-generated original map-style illustration created with ChatGPT image generation, OpenAI, 10 June 2026. This image is illustrative and not an official map; it is not based on Google Maps, TfL mapping, or external map tiles.</p>
+      </aside>
+    </div>
+  </header>
+
+  <main id="main">
+    <section class="section" id="key-figures">
+      <div class="section-inner fade-in">
+        <div class="section-head">
+          <span class="section-label">Overview</span>
+          <h2>Key figures for the proposed pilot.</h2>
+          <p class="lede">These figures frame the policy problem and the pilot design. They are not claimed as post-intervention outcomes.</p>
+        </div>
+
+        <div class="grid four">
+          <article class="card stat-card">
+            <span class="stat-value"><span class="counter" data-target="6.96" data-decimals="2">0</span> mph</span>
+            <span class="stat-label">Average speed on major bus routes in the City of Westminster [2].</span>
+          </article>
+          <article class="card stat-card">
+            <span class="stat-value"><span class="counter" data-target="28">0</span>%</span>
+            <span class="stat-label">Approximate share of central London weekday vehicle-km accounted for by PHVs [5].</span>
+          </article>
+          <article class="card stat-card">
+            <span class="stat-value"><span class="counter" data-target="95">0</span>%</span>
+            <span class="stat-label">Central Activities Zone sustainable mode-share target by 2041 [8].</span>
+          </article>
+          <article class="card stat-card">
+            <span class="stat-value"><span class="counter" data-target="6">0</span> months</span>
+            <span class="stat-label">Proposed pilot duration, with a 1-2 month pre-pilot baseline.</span>
+          </article>
+        </div>
+
+        <div class="grid two" style="margin-top:1rem;">
+          <article class="data-panel" aria-labelledby="road-share-title">
+            <h3 id="road-share-title">Indicative road-space / passenger-share comparison</h3>
+            <p class="lede">Assessment 1 used TfL evidence to show the efficiency gap between buses and cars/taxis/PHVs [4].</p>
+            <div class="bar-chart">
+              <div class="bar-row">
+                <div class="bar-top"><span>Buses: passenger share</span><span>60%</span></div>
+                <div class="bar-track"><div class="bar-fill" style="width:60%"></div></div>
+              </div>
+              <div class="bar-row">
+                <div class="bar-top"><span>Buses: road space</span><span>11%</span></div>
+                <div class="bar-track"><div class="bar-fill" style="width:11%"></div></div>
+              </div>
+              <div class="bar-row">
+                <div class="bar-top"><span>Cars/taxis/PHVs: passenger share</span><span>19%</span></div>
+                <div class="bar-track"><div class="bar-fill red" style="width:19%"></div></div>
+              </div>
+              <div class="bar-row">
+                <div class="bar-top"><span>Cars/taxis/PHVs: road space</span><span>52%</span></div>
+                <div class="bar-track"><div class="bar-fill red" style="width:52%"></div></div>
+              </div>
+            </div>
+          </article>
+          <article class="data-panel" aria-labelledby="phv-activity-title">
+            <h3 id="phv-activity-title">PHV activity in central London</h3>
+            <p class="lede">PHVs account for around 28% of central London weekday vehicle-km [5].</p>
+            <div class="circle-stat">
+              <div class="ring" aria-hidden="true"><span>28%</span></div>
+              <p>This visual is an illustrative summary of the cited share, not a measured pilot result.</p>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="problem">
+      <div class="section-inner fade-in">
+        <div class="section-head">
+          <span class="section-label">Problem &amp; People</span>
+          <h2>Westminster bus corridors are slow, busy, and politically sensitive.</h2>
+          <p class="lede">This section combines the problem statement, aims, objectives and stakeholders: what the issue is, who is affected, and what success would look like.</p>
+        </div>
+
+        <div class="card copy-stack">
+          <p>London congestion places pressure on the road network and makes the Central Activities Zone 95% sustainable mode-share target harder to achieve [8]. Buses are space-efficient but are slowed by congestion. Major bus routes in the City of Westminster have very low average speeds, around 6.96 mph [2], and one third of Londoners avoid buses due to slow journey times [1].</p>
+          <p>PHVs account for around 28% of central London weekday vehicle-km [5]. The problem is not all PHV use. The specific problem is avoidable PHV interference with bus corridors, especially empty running, standby circulation, and kerbside stopping. Essential PHV use must be protected, including disabled access, health-related trips, luggage, late-night travel, and other genuine door-to-door needs.</p>
+          <p>Slower buses make buses less attractive, contributing to a cycle of lower bus use, inefficient road-space use, and further congestion [3]. The proposed success test is therefore balanced: faster and more reliable buses without unacceptable impacts on accessibility, driver livelihoods, or nearby streets.</p>
+        </div>
+
+        <div class="objectives" id="aims">
+          <div class="section-head">
+            <span class="section-label">Aims</span>
+            <h2>Success means better bus reliability without unfair access costs.</h2>
+            <p class="lede">Aim: To improve bus reliability in the City of Westminster by reducing avoidable PHV-generated interference on bus corridors, supporting mode shift toward sustainable transport and progress toward the CAZ 95% mode-share target.</p>
+          </div>
+
+          <div class="table-wrap" role="region" aria-label="Objectives table" tabindex="0">
+            <table>
+              <thead>
+                <tr>
+                  <th>Objective</th>
+                  <th>What success means</th>
+                  <th>How it is measured</th>
+                  <th>Why it matters</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>Improve bus speed and reliability.</td>
+                  <td>Faster buses and lower journey-time variability.</td>
+                  <td>Bus speed, scheduled headway adherence, journey-time variability.</td>
+                  <td>Reliable buses make sustainable travel more attractive.</td>
+                </tr>
+                <tr>
+                  <td>Reduce empty PHV running in bus corridors.</td>
+                  <td>Less avoidable PHV circulation where buses are most delayed.</td>
+                  <td>Operator-reported empty PHV miles or minutes in the geofence.</td>
+                  <td>Targets the activity most likely to be avoidable.</td>
+                </tr>
+                <tr>
+                  <td>Reduce non-essential PHV kerbside stopping in bus corridors.</td>
+                  <td>Fewer disruptive stops, door-opening conflicts, and bus lane interruptions.</td>
+                  <td>Camera, ANPR, street-level enforcement, and operator stopping data.</td>
+                  <td>Kerbside friction can create local delay even when traffic is moving.</td>
+                </tr>
+                <tr>
+                  <td>Protect essential door-to-door accessibility.</td>
+                  <td>Disabled and health-related trips continue to receive door-to-door access.</td>
+                  <td>Exemption usage, satisfaction monitoring, complaints, and Equality Impact Assessment evidence.</td>
+                  <td>The intervention must not exclude essential users.</td>
+                </tr>
+                <tr>
+                  <td>Protect driver livelihoods.</td>
+                  <td>Driver revenue stays above an agreed review floor.</td>
+                  <td>Revenue per active hour, driver feedback, and operator reporting.</td>
+                  <td>The proposal should target empty mileage rather than paid trips.</td>
+                </tr>
+                <tr>
+                  <td>Monitor displacement to nearby streets.</td>
+                  <td>No material transfer of congestion or stopping conflicts to side streets.</td>
+                  <td>Nearby-street PHV volumes, stop observations, and hotspot mapping.</td>
+                  <td>Corridor gains should not simply move the problem elsewhere.</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+        <div id="stakeholders" style="margin-top:2rem;">
+          <div class="section-head">
+            <span class="section-label">Stakeholders</span>
+            <h2>People affected by the corridor rules.</h2>
+          </div>
+          <div class="grid three">
+            <article class="card stakeholder-card">
+              <span class="tag">Transport for London</span>
+              <p><b>Role:</b> transport authority, bus network manager, licensing/enforcement/data lead.</p>
+              <p><b>Needs:</b> bus reliability, sustainable mode share, value for money.</p>
+            </article>
+            <article class="card stakeholder-card">
+              <span class="tag">Westminster City Council</span>
+              <p><b>Role:</b> local highway authority and kerbside/waiting-restriction actor.</p>
+              <p><b>Needs:</b> traffic management, local economy, political feasibility.</p>
+              <p class="risk"><b>Risk:</b> political resistance to further restrictions.</p>
+              <p class="mitigation"><b>Mitigation:</b> frame as targeted bus reliability improvement rather than a blanket anti-PHV policy.</p>
+            </article>
+            <article class="card stakeholder-card">
+              <span class="tag">PHV operators</span>
+              <p><b>Role:</b> app geofencing, routing, driver/passenger communication, data reporting.</p>
+              <p><b>Needs:</b> clear rules, lead time, standardised reporting.</p>
+              <p class="risk"><b>Risk:</b> compliance burden and cross-border operator issues.</p>
+              <p class="mitigation"><b>Mitigation:</b> phased reporting duty and TfL-standardised reporting interface.</p>
+            </article>
+            <article class="card stakeholder-card">
+              <span class="tag">PHV drivers</span>
+              <p><b>Role:</b> affected workforce.</p>
+              <p><b>Needs:</b> income stability, fair enforcement, clear rules.</p>
+              <p class="risk"><b>Risk:</b> earnings reduction and equity concern.</p>
+              <p class="mitigation"><b>Mitigation:</b> target empty mileage rather than paid trips; protect through-trips; monitor revenue per active hour; engage driver representatives early.</p>
+            </article>
+            <article class="card stakeholder-card">
+              <span class="tag">PHV passengers and potential bus users</span>
+              <p><b>Role:</b> some discretionary PHV users may be marginal bus users.</p>
+              <p><b>Needs:</b> fast, reliable, safe, convenient travel.</p>
+              <p class="risk"><b>Risk:</b> reduced doorstep convenience.</p>
+              <p class="mitigation"><b>Mitigation:</b> nearby designated pickup/drop-off points and improved bus reliability.</p>
+            </article>
+            <article class="card stakeholder-card">
+              <span class="tag">Disabled and health-related travellers</span>
+              <p><b>Role:</b> essential door-to-door users.</p>
+              <p><b>Needs:</b> protected access and privacy.</p>
+              <p class="risk"><b>Risk:</b> exclusion if rules are too rigid.</p>
+              <p class="mitigation"><b>Mitigation:</b> exemptions, opt-in verification, satisfaction monitoring, and Equality Impact Assessment.</p>
+            </article>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="how-it-works">
+      <div class="section-inner fade-in">
+        <div class="section-head">
+          <span class="section-label">Solution</span>
+          <h2>A targeted geofence, empty-mileage fee, and no-stopping rule.</h2>
+          <p class="lede">The intervention is designed as a narrow Westminster bus-corridor pilot, not a blanket restriction on PHVs.</p>
+        </div>
+
+        <div class="grid three">
+          <article class="card intervention-card">
+            <h3>Geofenced corridor</h3>
+            <ul class="bullets">
+              <li>Selected Westminster bus corridors.</li>
+              <li>Monday to Friday, 7am-6pm.</li>
+              <li>Initial pilot around Piccadilly Circus / Regent Street South / Haymarket.</li>
+              <li>PHV operators use app geofencing to detect corridor entry and apply corridor-specific rules.</li>
+            </ul>
+          </article>
+          <article class="card intervention-card">
+            <h3>Empty-mileage fee</h3>
+            <ul class="bullets">
+              <li>Operators are charged when a PHV is inside the corridor, has no passenger, and is not en-route to a passenger.</li>
+              <li>The fee targets avoidable empty circulation rather than paid passenger demand.</li>
+              <li>Revenue should be reinvested into bus improvements.</li>
+            </ul>
+          </article>
+          <article class="card intervention-card">
+            <h3>No-stopping rule</h3>
+            <ul class="bullets">
+              <li>Non-exempt PHVs cannot pick up or drop off directly on the bus corridor.</li>
+              <li>Passengers are redirected to nearby designated pickup/drop-off points.</li>
+              <li>The aim is to reduce kerbside conflict, illegal stopping, door-opening conflict, and bus delay.</li>
+            </ul>
+          </article>
+        </div>
+
+        <div id="exemptions" style="margin-top:1rem;">
+          <article class="card">
+            <h3>Exemptions</h3>
+            <p>Blue Badge and Freedom Pass holders are exempt. Health-related and accessibility-essential trips are protected. The proposal uses opt-in eligibility flags so unnecessary personal data is not shared.</p>
+          </article>
+        </div>
+
+        <div style="margin-top:1.4rem;">
+          <div class="section-head">
+            <span class="section-label">Decision logic</span>
+            <h2>What happens when a PHV enters the corridor.</h2>
+          </div>
+          <div class="flow" aria-label="PHV decision logic diagram">
+            <div class="flow-node start">PHV enters geofenced bus corridor.</div>
+            <div class="flow-node question one">Does the PHV have a passenger?</div>
+            <div class="flow-node allow pass"><span class="answer">Yes</span>Pass through.</div>
+            <div class="flow-node question enroute"><span class="answer">No</span>Is it en-route to a passenger or exempt trip?</div>
+            <div class="flow-node allow no-fee"><span class="answer">Yes</span>No empty-mileage fee.</div>
+            <div class="flow-node restrict fee"><span class="answer">No</span>Empty-mileage fee + no stopping.</div>
+            <div class="flow-node question two">Is the passenger exempt?</div>
+            <div class="flow-node allow exempt"><span class="answer">Yes</span>Door-to-door pick-up/drop-off allowed.</div>
+            <div class="flow-node restrict pickup"><span class="answer">No</span>Use nearby designated pickup/drop-off point.</div>
+          </div>
+        </div>
+
+        <div class="comparison-block" id="before-after">
+          <div class="section-head">
+            <span class="section-label">Before vs After animation</span>
+            <h2>What the corridor is trying to change.</h2>
+            <p class="lede">A lightweight illustrative comparison of the target operating condition. It shows the proposed direction of travel, not measured pilot results.</p>
+          </div>
+
+          <div class="comparison-grid" aria-label="Before and after bus corridor animation">
+            <article class="comparison-panel before">
+              <div class="comparison-heading">
+                <h3>Before</h3>
+                <span class="comparison-status">Disrupted corridor</span>
+              </div>
+              <svg class="street-svg" viewBox="0 0 620 330" role="img" aria-label="Before intervention: vehicles move left to right, a kerbside PHV blocks the bus corridor, and the bus changes lane before slowing behind a moving PHV">
+                <rect width="620" height="330" fill="#edf2f6"/>
+                <rect x="0" y="42" width="620" height="72" fill="#dfe6ed"/>
+                <rect x="0" y="114" width="620" height="126" fill="#6f7e8d"/>
+                <rect x="0" y="240" width="620" height="52" fill="#dfe6ed"/>
+                <rect x="0" y="292" width="620" height="38" fill="#cfd8e1"/>
+                <line x1="0" y1="176" x2="620" y2="176" stroke="#f7f9fb" stroke-width="5" stroke-dasharray="26 24"/>
+                <line x1="0" y1="114" x2="620" y2="114" stroke="#ffffff" stroke-width="4"/>
+                <line x1="0" y1="240" x2="620" y2="240" stroke="#ffffff" stroke-width="4"/>
+                <path d="M60 210 C178 210 232 198 286 164 C344 128 440 128 574 128" stroke="#f6b221" stroke-width="5" fill="none" stroke-dasharray="8 8" opacity="0.95"/>
+                <g class="vehicle bus-before">
+                  <rect x="0" y="186" width="116" height="42" rx="8" fill="#0072ce" stroke="#ffffff" stroke-width="3"/>
+                  <rect x="16" y="194" width="28" height="12" rx="2" fill="#cfe8fb"/>
+                  <rect x="50" y="194" width="28" height="12" rx="2" fill="#cfe8fb"/>
+                  <text x="37" y="222" fill="#ffffff" font-family="Inter, Arial, sans-serif" font-size="16" font-weight="900">BUS</text>
+                </g>
+                <g class="vehicle">
+                  <rect x="416" y="204" width="76" height="29" rx="6" fill="#d21f3c" stroke="#ffffff" stroke-width="3"/>
+                  <text x="433" y="224" fill="#ffffff" font-family="Inter, Arial, sans-serif" font-size="12" font-weight="900">PHV</text>
+                </g>
+                <g class="vehicle phv-before-moving">
+                  <rect x="270" y="128" width="70" height="28" rx="6" fill="#263d55" stroke="#ffffff" stroke-width="2"/>
+                  <text x="286" y="147" fill="#ffffff" font-family="Inter, Arial, sans-serif" font-size="11" font-weight="900">PHV</text>
+                </g>
+                <g>
+                  <rect x="244" y="34" width="314" height="62" rx="8" fill="#ffffff" stroke="#d9e0e8"/>
+                  <text x="262" y="59" fill="#071f3a" font-family="Inter, Arial, sans-serif" font-size="14" font-weight="900">
+                    <tspan x="262" dy="0">Kerbside PHV stop and PHV</tspan>
+                    <tspan x="262" dy="18">traffic delay buses</tspan>
+                  </text>
+                  <path class="callout-line" d="M386 96 L454 204" stroke="#d21f3c" stroke-width="3" fill="none"/>
+                </g>
+                <text class="street-label" x="22" y="86">footway / kerb</text>
+                <text class="street-label" x="22" y="270">kerbside activity</text>
+              </svg>
+            </article>
+
+            <article class="comparison-panel after">
+              <div class="comparison-heading">
+                <h3>After</h3>
+                <span class="comparison-status">Clearer corridor</span>
+              </div>
+              <svg class="street-svg" viewBox="0 0 620 330" role="img" aria-label="After intervention: the bus moves left to right, the kerb is clear, and the bus travels straight and faster">
+                <rect width="620" height="330" fill="#edf2f6"/>
+                <rect x="0" y="42" width="620" height="72" fill="#dfe6ed"/>
+                <rect x="0" y="114" width="620" height="126" fill="#6f7e8d"/>
+                <rect x="0" y="240" width="620" height="52" fill="#dfe6ed"/>
+                <rect x="0" y="292" width="620" height="38" fill="#cfd8e1"/>
+                <line x1="0" y1="176" x2="620" y2="176" stroke="#f7f9fb" stroke-width="5" stroke-dasharray="26 24"/>
+                <line x1="0" y1="114" x2="620" y2="114" stroke="#ffffff" stroke-width="4"/>
+                <line x1="0" y1="240" x2="620" y2="240" stroke="#ffffff" stroke-width="4"/>
+                <path d="M60 210 L584 210" stroke="#18864b" stroke-width="5" fill="none" stroke-dasharray="10 8" opacity="0.95"/>
+                <g class="vehicle bus-after">
+                  <rect x="0" y="186" width="116" height="42" rx="8" fill="#0072ce" stroke="#ffffff" stroke-width="3"/>
+                  <rect x="16" y="194" width="28" height="12" rx="2" fill="#cfe8fb"/>
+                  <rect x="50" y="194" width="28" height="12" rx="2" fill="#cfe8fb"/>
+                  <text x="37" y="222" fill="#ffffff" font-family="Inter, Arial, sans-serif" font-size="16" font-weight="900">BUS</text>
+                </g>
+                <g>
+                  <rect x="294" y="38" width="250" height="58" rx="8" fill="#ffffff" stroke="#d9e0e8"/>
+                  <text x="318" y="63" fill="#071f3a" font-family="Inter, Arial, sans-serif" font-size="14" font-weight="900">
+                    <tspan x="318" dy="0">Clear corridor supports</tspan>
+                    <tspan x="318" dy="18">smoother bus movement</tspan>
+                  </text>
+                  <path class="callout-line" d="M394 96 L428 204" stroke="#18864b" stroke-width="3" fill="none"/>
+                </g>
+                <g fill="#18864b" opacity="0.18">
+                  <rect x="318" y="242" width="180" height="28" rx="14"/>
+                </g>
+                <text class="street-label" x="22" y="86">footway / kerb</text>
+                <text class="street-label" x="22" y="270">kerb kept clear</text>
+              </svg>
+            </article>
+          </div>
+          <p class="caption" style="color:var(--muted);">Target outcome: fewer disruptive PHV movements, less kerbside stopping, and smoother bus operation.</p>
+          <p class="source-note">Animation source: Custom schematic SVG/CSS animation created by the project team with AI coding assistance using Codex/Claude, 10 June 2026. This is an illustrative animation, not a measured traffic simulation.</p>
+        </div>
+
+        <div id="trade-offs" style="margin-top:2rem;">
+          <div class="section-head">
+            <span class="section-label">Pros, cons &amp; trade-offs</span>
+            <h2>The policy case depends on balancing reliability gains with fairness risks.</h2>
+          </div>
+          <div class="pros-cons">
+            <article class="card">
+              <h3>Pros</h3>
+              <ul class="bullets">
+                <li>Targets operator dispatch and avoidable empty running, not inelastic passenger demand.</li>
+                <li>Prices empty circulation that the congestion charge does not directly target.</li>
+                <li>Uses existing ANPR, camera enforcement and operator app data where possible.</li>
+                <li>Reinvests revenue into bus improvements.</li>
+              </ul>
+            </article>
+            <article class="card">
+              <h3>Cons and risks</h3>
+              <ul class="bullets">
+                <li>Driver livelihood and workforce equity concerns raise the burden of justification.</li>
+                <li>Cross-border PHVs may complicate reporting and compliance.</li>
+                <li>Multi-causal slowdown makes PHV-specific speed gains uncertain.</li>
+                <li>Passenger convenience may reduce for non-exempt doorstep trips.</li>
+              </ul>
+            </article>
+          </div>
+
+          <div class="table-wrap" role="region" aria-label="Trade-offs and mitigations table" tabindex="0" style="margin-top:1rem;">
+            <table>
+              <thead>
+                <tr>
+                  <th>Trade-off</th>
+                  <th>Why it matters</th>
+                  <th>Mitigation</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>Bus reliability vs doorstep PHV convenience.</td>
+                  <td>Passengers value door-to-door convenience, especially in busy central areas.</td>
+                  <td>Use nearby designated pickup/drop-off points and preserve exemptions for essential trips.</td>
+                </tr>
+                <tr>
+                  <td>Congestion reduction vs driver livelihood/fare impacts.</td>
+                  <td>Restrictions can affect trip frequency, earnings, or passenger prices.</td>
+                  <td>Target empty mileage rather than paid trips; protect through-trips; monitor revenue per active hour.</td>
+                </tr>
+                <tr>
+                  <td>Bus corridor speed vs side-street displacement.</td>
+                  <td>Kerbside activity could move to adjacent streets.</td>
+                  <td>Track nearby-street PHV volume and stopping hotspots; adjust pickup-point locations.</td>
+                </tr>
+                <tr>
+                  <td>Enforcement precision vs data privacy.</td>
+                  <td>Effective targeting requires trip-status data, but personal information should be minimised.</td>
+                  <td>Use opt-in eligibility flags and aggregate operator reporting wherever possible.</td>
+                </tr>
+                <tr>
+                  <td>Targeting PHVs vs multi-causal congestion uncertainty.</td>
+                  <td>Bus delay has several causes, so PHV-specific benefits may be uncertain.</td>
+                  <td>Use a measured pilot with baseline comparison, multi-dimensional thresholds, and pause/redesign criteria.</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="road-map">
+      <div class="section-inner fade-in">
+        <div class="section-head">
+          <span class="section-label">Implementation &amp; Pilot</span>
+          <h2>A six-month pilot with a clear road map and decision rules.</h2>
+          <p class="lede">Implementation and pilot testing are combined here so assessors can see how the intervention would be tried, monitored, adjusted, or stopped.</p>
+        </div>
+
+        <h3>Project Road Map:</h3>
+        <div class="roadmap" aria-label="Project Road Map timeline">
+          <article class="roadmap-item">
+            <b>Months 1–3:</b>
+            <p>collect baseline data, finalise geofence, reporting duty, exemption rules and side-street bay locations.</p>
+          </article>
+          <article class="roadmap-item">
+            <b>Months 4–6:</b>
+            <p>launch empty-mileage fee, no-stopping rule and app-directed PHV bays, with protected access for disabled and health-related trips.</p>
+          </article>
+          <article class="roadmap-item">
+            <b>Monthly:</b>
+            <p>monitor bus reliability, empty PHV activity, kerbside impact, inclusivity, driver livelihood and displacement.</p>
+          </article>
+          <article class="roadmap-item">
+            <b>After pilot:</b>
+            <p>scale only if reliability improves without unacceptable trade-offs; otherwise adjust or stop.</p>
+          </article>
+        </div>
+
+        <div id="pilot-design" class="grid three">
+          <article class="card priority-card">
+            <span class="line-icon" aria-hidden="true">R</span>
+            <div><h3>Reliability</h3><p>Removing empty PHV running and disruptive stopping is expected to improve bus speeds and reduce journey-time variability.</p></div>
+          </article>
+          <article class="card priority-card">
+            <span class="line-icon" aria-hidden="true">V</span>
+            <div><h3>Value for money</h3><p>Capital cost is reduced by using existing ANPR, camera enforcement, congestion-charge infrastructure, and operator app data where possible.</p></div>
+          </article>
+          <article class="card priority-card">
+            <span class="line-icon" aria-hidden="true">S</span>
+            <div><h3>Safety</h3><p>Reducing kerbside stopping reduces door-opening conflict, pedestrian risk, and boarding into traffic.</p></div>
+          </article>
+          <article class="card priority-card">
+            <span class="line-icon" aria-hidden="true">C</span>
+            <div><h3>Customer service</h3><p>Some PHV passengers may walk slightly further to designated pickup points, but faster and more reliable buses make switching more attractive for marginal users.</p></div>
+          </article>
+          <article class="card priority-card">
+            <span class="line-icon" aria-hidden="true">I</span>
+            <div><h3>Inclusivity</h3><p>Blue Badge, Freedom Pass, disabled-user and health-related trips should be protected through exemptions and monitoring.</p></div>
+          </article>
+          <article class="card priority-card">
+            <span class="line-icon" aria-hidden="true">M</span>
+            <div><h3>Sustainability</h3><p>Improving bus reliability supports mode shift toward sustainable transport and the CAZ 95% sustainable mode-share target.</p></div>
+          </article>
+        </div>
+
+        <div id="metrics" style="margin-top:2rem;">
+          <div class="section-head">
+            <span class="section-label">Pilot traffic-light dashboard</span>
+            <h2>Pilot targets, not measured outcomes.</h2>
+            <p class="lede">Location: Piccadilly Circus / Regent Street South / Haymarket. Duration: 6 months. Baseline: 1-2 months pre-pilot. Intervention: remaining pilot period. All metrics are measured against baseline.</p>
+          </div>
+
+          <div class="metric-dashboard">
+            <article class="metric-card">
+              <h3>Bus reliability</h3>
+              <p>Bus speed and journey-time variability against baseline.</p>
+              <div class="metric-lights"><span class="light green">Scale: speed +5%; variability -5%</span><span class="light amber">Adjust: 1-5%</span><span class="light red">Redesign: no gain</span></div>
+            </article>
+            <article class="metric-card">
+              <h3>PHV reduction</h3>
+              <p>Empty PHV miles/minutes inside the corridor.</p>
+              <div class="metric-lights"><span class="light green">Scale: -10%</span><span class="light amber">Adjust: 1-10%</span><span class="light red">Redesign: no reduction</span></div>
+            </article>
+            <article class="metric-card">
+              <h3>Kerbside impact</h3>
+              <p>Disruptive PHV stops near bus routes.</p>
+              <div class="metric-lights"><span class="light green">Scale: -20%</span><span class="light amber">Adjust: 1-20%</span><span class="light red">Redesign: hotspots</span></div>
+            </article>
+            <article class="metric-card">
+              <h3>Inclusivity</h3>
+              <p>Disabled and health-related door-to-door trips maintained.</p>
+              <div class="metric-lights"><span class="light green">Scale: 95%+</span><span class="light amber">Adjust: 90-95%</span><span class="light red">Redesign: below 90%</span></div>
+            </article>
+            <article class="metric-card">
+              <h3>Driver livelihood</h3>
+              <p>Driver revenue against an agreed review floor.</p>
+              <div class="metric-lights"><span class="light green">Scale: above floor</span><span class="light amber">Adjust: within 5%</span><span class="light red">Redesign: below floor</span></div>
+            </article>
+            <article class="metric-card">
+              <h3>Displacement</h3>
+              <p>Nearby-street PHV volume increase.</p>
+              <div class="metric-lights"><span class="light green">Scale: below 5%</span><span class="light amber">Adjust: 5-10%</span><span class="light red">Redesign: over 10%</span></div>
+            </article>
+          </div>
+        </div>
+
+        <div id="monitoring" class="card copy-stack" style="margin-top:1rem;">
+          <h3>Monitoring and decision rules</h3>
+          <p>These metrics are intentionally multi-dimensional: the pilot only succeeds if buses improve without undermining accessibility, driver livelihoods, or nearby-street conditions.</p>
+          <p>If targets are not met, the pilot should pause, adjust, or redesign rather than scaling automatically.</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="previous-attempts">
+      <div class="section-inner fade-in">
+        <div class="section-head">
+          <span class="section-label">Evidence &amp; References</span>
+          <h2>Prior attempts and references stay expandable for scan-friendly reading.</h2>
+          <p class="lede">Poster references remain exactly numbered as [1]-[8]. Additional Assessment 1 sources are labelled [E1]-[E18].</p>
+        </div>
+
+        <div class="card copy-stack" id="visual-asset-credits">
+          <h3>Visual asset credits</h3>
+          <ol class="bullets">
+            <li><b>Homepage map:</b> AI-generated original map-style illustration created with ChatGPT image generation, OpenAI, 10 June 2026. Used as an illustrative, non-official map-style visual for the Piccadilly Circus pilot focus area. Not based on Google Maps, TfL mapping, or external map tiles.</li>
+            <li><b>Before/After animation:</b> Custom schematic SVG/CSS animation created by the project team with AI coding assistance using Codex/Claude, 10 June 2026. Used as an illustrative comparison of bus-corridor operation before and after the proposed intervention. Not a measured traffic simulation.</li>
+          </ol>
+        </div>
+
+        <details class="accordion" open>
+          <summary>Previous attempts and precedents</summary>
+          <div class="accordion-body">
+            <div class="evidence-list">
+              <article class="evidence-item">
+                <span class="year">2018</span>
+                <div><h3>PHV licence cap</h3><p>Not selected because previous attempts to cap PHV numbers were politically difficult or untenable. This supports a targeted corridor intervention rather than a blanket cap.</p></div>
+              </article>
+              <article class="evidence-item">
+                <span class="year">2016</span>
+                <div><h3>Heathrow Authorised Vehicle Area and geofencing</h3><p>Used as a practical precedent for geofenced vehicle management.</p></div>
+              </article>
+              <article class="evidence-item">
+                <span class="year">2019</span>
+                <div><h3>PHV congestion charge exemption removal</h3><p>Used as evidence that financial incentives can influence PHV behaviour [6], with Assessment 1 also citing follow-up evidence on PHV Congestion Charge effects [E15] and operator-side impacts [E16].</p></div>
+              </article>
+              <article class="evidence-item">
+                <span class="year">Pilot</span>
+                <div><h3>Adaptation for this proposal</h3><p>The intervention does not ban PHVs. It targets avoidable empty running and non-essential stopping on bus corridors while protecting exempt and essential door-to-door users.</p></div>
+              </article>
+            </div>
+          </div>
+        </details>
+
+        <details class="accordion" id="poster-references" open>
+          <summary>Poster references [1]-[8]</summary>
+          <div class="accordion-body">
+            <ol class="references">
+              <li><span class="ref-label">[1]</span>London Assembly, "Bus Journeys Taking Longer and Longer…," Greater London Authority, London, UK, Dec. 8, 2025. [Online]. Available: <a href="https://www.london.gov.uk/who-we-are/what-londonassembly-does/london-assembly-press-releases/bus-journeys-taking-longer-and-longer">https://www.london.gov.uk/who-we-are/what-londonassembly-does/london-assembly-press-releases/bus-journeys-taking-longer-and-longer</a>. [Accessed: Jun. 5, 2026].</li>
+              <li><span class="ref-label">[2]</span>Transport for London, "Borough-level Bus Speeds," TfL, 2024–25. [Online]. Available: <a href="https://tfl.gov.uk/cdn/static/cms/documents/borough-all-bus-speeds-to-p12-2025.xlsx">https://tfl.gov.uk/cdn/static/cms/documents/borough-all-bus-speeds-to-p12-2025.xlsx</a>. Processed by the authors, 2026. [Accessed: Jun. 5, 2026].</li>
+              <li><span class="ref-label">[3]</span>Transport for London, "Congestion Charge Marks 20 Years of Keeping London Moving Sustainably," Transport for London, London, UK, Feb. 17, 2023. [Online]. Available: <a href="https://tfl.gov.uk/infofor/media/press-releases/2023/february/congestion-charge-marks-20-years-of-keeping-londonmoving-sustainably">https://tfl.gov.uk/infofor/media/press-releases/2023/february/congestion-charge-marks-20-years-of-keeping-londonmoving-sustainably</a>. [Accessed: Jun. 4, 2026].</li>
+              <li><span class="ref-label">[4]</span>Transport for London, "Written evidence submitted by Transport for London (URB0093)," House of Commons Transport Committee: Urban Congestion Inquiry, UK Parliament. [Online]. Available: <a href="https://committees.parliament.uk/writtenevidence/77255/html/">https://committees.parliament.uk/writtenevidence/77255/html/</a>. [Accessed: Jun. 5, 2026].</li>
+              <li><span class="ref-label">[5]</span>Transport for London, Taxi and private hire action plan 2025, pp. 13–15. [Online]. Available: <a href="https://tfl.gov.uk/cdn/static/cms/documents/taxi-private-hire-action-plan-2025.pdf">https://tfl.gov.uk/cdn/static/cms/documents/taxi-private-hire-action-plan-2025.pdf</a>. [Accessed: Jun. 5, 2026].</li>
+              <li><span class="ref-label">[6]</span>Transport for London, "Changes proposed to Congestion Charge to reduce traffic and improve air quality," TfL Press Office, London, UK, Jul. 2018. [Online]. Available: <a href="https://tfl.gov.uk/info-for/media/press-releases/2018/july/changes-proposed-to-congestion-charge-to-reduce-traffic-and-improve-air-quality">https://tfl.gov.uk/info-for/media/press-releases/2018/july/changes-proposed-to-congestion-charge-to-reduce-traffic-and-improve-air-quality</a>. [Accessed: Jun. 9, 2026].</li>
+              <li><span class="ref-label">[7]</span>R. Binns, J. Stein, S. Datta, M. Van Kleek, and N. Shadbolt, "Not Even Nice Work If You Can Get It: A Longitudinal Study of Uber's Algorithmic Pay and Pricing," in Proc. ACM Conf. Fairness, Accountability, and Transparency (FAccT), Jun. 2025. [Online]. Available: <a href="https://arxiv.org/abs/2506.15278">https://arxiv.org/abs/2506.15278</a>. [Accessed: Jun. 5, 2026].</li>
+              <li><span class="ref-label">[8]</span>Greater London Authority, Mayor's Transport Strategy. London: GLA, 2018. [Online]. Available: <a href="https://www.london.gov.uk/sites/default/files/mayors-transport-strategy-2018.pdf">https://www.london.gov.uk/sites/default/files/mayors-transport-strategy-2018.pdf</a>. [Accessed: Jun. 5, 2026].</li>
+            </ol>
+          </div>
+        </details>
+
+        <details class="accordion" id="extended-references">
+          <summary>Extended references [E1]-[E18]</summary>
+          <div class="accordion-body">
+            <ol class="references">
+              <li><span class="ref-label">[E1]</span>INRIX, "INRIX 2025 Global Traffic Scorecard: Traffic Jams Ease Across the U.K. as London Delays Fall 10 Percent," INRIX, Dec. 2, 2025. [Online]. Available: <a href="https://inrix.com/press-releases/2025-global-traffic-scorecard-uk/">https://inrix.com/press-releases/2025-global-traffic-scorecard-uk/</a>. [Accessed: Jun. 5, 2026].</li>
+              <li><span class="ref-label">[E2]</span>Transport for London, Travel in London 2025: Annual overview, p. 54. [Online]. Available: <a href="https://content.tfl.gov.uk/travel-in-london-2025-annual-overview-acc.pdf">https://content.tfl.gov.uk/travel-in-london-2025-annual-overview-acc.pdf</a>. [Accessed: Jun. 5, 2026].</li>
+              <li><span class="ref-label">[E3]</span>City of London Corporation, "Transport Strategy Annual Report," City of London Corporation, London, UK, Apr. 2025. [Accessed: Jun. 5, 2026].</li>
+              <li><span class="ref-label">[E4]</span>S. Barrett, M. Wedderburn, and E. Belcher, "Green Light: Next Generation Road User Charging for a Healthier, More Liveable London — Chapter 1: System Overload," Centre for London, London, UK, Apr. 29, 2019. [Online]. Available: <a href="https://centreforlondon.org/reader/green-light/chapter-1/">https://centreforlondon.org/reader/green-light/chapter-1/</a>. [Accessed: Jun. 4, 2026].</li>
+              <li><span class="ref-label">[E5]</span>INRIX, "INRIX 2024 Global Traffic Scorecard: London most congested city in Europe; congestion costing the UK £7.7 billion," INRIX, 2024. [Online]. Available: <a href="https://inrix.com/press-releases/2024-global-traffic-scorecard-uk/">https://inrix.com/press-releases/2024-global-traffic-scorecard-uk/</a>. [Accessed: Jun. 5, 2026].</li>
+              <li><span class="ref-label">[E6]</span>Transport for London, "Bus Action Plan: Building an attractive, zero-emission bus service for all Londoners," Transport for London, London, UK, Mar. 2022. [Accessed: Jun. 5, 2026].</li>
+              <li><span class="ref-label">[E7]</span>Greater London Authority, The London Plan 2021, Chapter 10: Transport. [Online]. Available: <a href="https://www.london.gov.uk/programmes-strategies/planning/london-plan/the-london-plan-2021-online/chapter-10-transport">https://www.london.gov.uk/programmes-strategies/planning/london-plan/the-london-plan-2021-online/chapter-10-transport</a>. [Accessed: Jun. 5, 2026].</li>
+              <li><span class="ref-label">[E8]</span>Her Majesty's Government, "Traffic Management Act 2004," Her Majesty's Stationery Office, London, UK, 2004. [Online]. Available: <a href="https://www.legislation.gov.uk/ukpga/2004/18">https://www.legislation.gov.uk/ukpga/2004/18</a>. [Accessed: Jun. 5, 2026].</li>
+              <li><span class="ref-label">[E9]</span>City of Westminster, "Westminster Sustainable Transport Strategy 2026–2036," City of Westminster Council, London, UK, 2026. [Accessed: Jun. 5, 2026].</li>
+              <li><span class="ref-label">[E10]</span>Westminster City Council, "Statement on Oxford Street," Westminster City Council, London, UK, May 29, 2026. [Online]. Available: <a href="https://www.westminster.gov.uk/news/statement-oxford-street">https://www.westminster.gov.uk/news/statement-oxford-street</a>. [Accessed: Jun. 4, 2026].</li>
+              <li><span class="ref-label">[E11]</span>Westminster Conservatives, "Save Our Buses." [Online]. Available: <a href="https://www.westminsterconservatives.com/save-our-buses">https://www.westminsterconservatives.com/save-our-buses</a>. [Accessed: Jun. 4, 2026].</li>
+              <li><span class="ref-label">[E12]</span>Greater London Authority Act 1999, c. 29, s. 145. [Online]. Available: <a href="https://www.legislation.gov.uk/ukpga/1999/29/section/145">https://www.legislation.gov.uk/ukpga/1999/29/section/145</a>. [Accessed: Jun. 4, 2026].</li>
+              <li><span class="ref-label">[E13]</span>London TravelWatch, The Next Stop: Making London's Buses Better. London: London TravelWatch, 2024. [Online]. Available: <a href="https://www.londontravelwatch.org.uk/wp-content/uploads/2024/11/The-next-stop-Making-Londons-buses-better.pdf">https://www.londontravelwatch.org.uk/wp-content/uploads/2024/11/The-next-stop-Making-Londons-buses-better.pdf</a>. [Accessed: Jun. 5, 2026].</li>
+              <li><span class="ref-label">[E14]</span>Transport for London, "TPH Notice 02/26: Changes to the Congestion Charge Scheme," Transport for London, London, Jan. 2026. [Online]. Available: <a href="https://tfl.gov.uk/cdn/static/cms/documents/02-26-tph-notice-changes-to-the-congestion-charge-scheme.pdf">https://tfl.gov.uk/cdn/static/cms/documents/02-26-tph-notice-changes-to-the-congestion-charge-scheme.pdf</a>. [Accessed: Jun. 5, 2026].</li>
+              <li><span class="ref-label">[E15]</span>Mayor of London, "PHVs and the Congestion Charge (8)," Greater London Authority, London, 2019. [Online]. Available: <a href="https://www.london.gov.uk/who-we-are/what-london-assembly-does/questions-mayor/find-an-answer/phvs-and-congestion-charge-8">https://www.london.gov.uk/who-we-are/what-london-assembly-does/questions-mayor/find-an-answer/phvs-and-congestion-charge-8</a>. [Accessed: Jun. 5, 2026].</li>
+              <li><span class="ref-label">[E16]</span>Oxera Consulting, "Assessing Transport for London's Congestion Charge Proposals," Oxera Consulting Ltd, Oxford, Sep. 2018. [Online]. Available: <a href="https://www.oxera.com/wp-content/uploads/2018/10/Oxera_Assessing-Tfls-Congestion-Charge-proposals_270918.pdf">https://www.oxera.com/wp-content/uploads/2018/10/Oxera_Assessing-Tfls-Congestion-Charge-proposals_270918.pdf</a>. [Accessed: Jun. 5, 2026].</li>
+              <li><span class="ref-label">[E17]</span>Brunel University London, "Giving Voice to Migrant Ride-Share Drivers in London," Brunel University London, Uxbridge. [Online]. Available: <a href="https://www.brunel.ac.uk/research/projects/giving-voice-to-migrant-ride-share-drivers-in-london">https://www.brunel.ac.uk/research/projects/giving-voice-to-migrant-ride-share-drivers-in-london</a>. [Accessed: Jun. 5, 2026].</li>
+              <li><span class="ref-label">[E18]</span>"Uber strike today 2025: Drivers 'block entrance' at Heathrow Airport as they log off apps," National World, May 1, 2025. [Online]. Available: <a href="https://www.nationalworld.com/travel/travel-news/uber-strike-today-2025-drivers-block-entrance-at-heathrow-airport-as-they-log-off-apps-5108141">https://www.nationalworld.com/travel/travel-news/uber-strike-today-2025-drivers-block-entrance-at-heathrow-airport-as-they-log-off-apps-5108141</a>. [Accessed: Jun. 5, 2026].</li>
+            </ol>
+          </div>
+        </details>
+
+        <details class="accordion" id="gai-statement" open>
+          <summary>GAI statement</summary>
+          <div class="accordion-body">
+            <div class="gai-box">
+              <p>“We acknowledge the use of Claude (Sonnet 4.6 and Opus 4.8, Anthropic, https://claude.ai) to support literature identification, source verification, problem framing discussion, and iterative review of draft wording. Interactions took the form of extended dialogue in which we proposed directions, supplied data, and drafted analysis, and Claude provided suggestions which we critically evaluated to help consider our next steps. Claude was also used to verify specific statistics against their original sources in infrequently opened longer documents, and to help format citations. Claude does not have the ability to provide shareable chat links.”</p>
+              <p style="margin-top:1rem;">This companion website was structured and formatted with AI support, then reviewed and edited by the team for accuracy, relevance, and consistency with the poster.</p>
+            </div>
+          </div>
+        </details>
+      </div>
+    </section>
+  </main>
+
+  <button class="back-to-top" type="button" aria-label="Back to top">
+    <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 19V5M5 12l7-7 7 7"/></svg>
+  </button>
+
+  <footer class="site-footer">
+    <div class="footer-inner">
+      <b>Team Central 1-16</b>
+      <span>Clearing the way for buses: Empty-mileage fees and geofenced no-stopping on Westminster bus corridors.</span>
+      <span>QR companion site for UCL Assessment 2 poster.</span>
+    </div>
+  </footer>
+
+  <script>
+    const menuToggle = document.querySelector('.menu-toggle');
+    const navMenu = document.querySelector('#nav-menu');
+    const navGroups = [...document.querySelectorAll('.nav-group')];
+    const navLinks = [...document.querySelectorAll('.nav-sub a')];
+    const progress = document.querySelector('.progress');
+    const backToTop = document.querySelector('.back-to-top');
+
+    menuToggle.addEventListener('click', () => {
+      const isOpen = navMenu.classList.toggle('is-open');
+      menuToggle.setAttribute('aria-expanded', String(isOpen));
+    });
+
+    navGroups.forEach(group => {
+      group.addEventListener('toggle', () => {
+        if (!group.open || window.matchMedia('(max-width: 819px)').matches) return;
+        navGroups.forEach(other => {
+          if (other !== group) other.open = false;
+        });
+      });
+    });
+
+    navLinks.forEach(link => {
+      link.addEventListener('click', () => {
+        if (window.matchMedia('(max-width: 819px)').matches) {
+          navMenu.classList.remove('is-open');
+          menuToggle.setAttribute('aria-expanded', 'false');
+        }
+        navGroups.forEach(group => {
+          group.open = false;
+        });
+      });
+    });
+
+    const updateProgress = () => {
+      const max = document.documentElement.scrollHeight - window.innerHeight;
+      const amount = max > 0 ? window.scrollY / max : 0;
+      progress.style.transform = `scaleX(${Math.min(1, Math.max(0, amount))})`;
+      backToTop.classList.toggle('is-visible', window.scrollY > 520);
+    };
+
+    window.addEventListener('scroll', updateProgress, { passive: true });
+    updateProgress();
+
+    backToTop.addEventListener('click', () => {
+      window.scrollTo({ top: 0, behavior: window.matchMedia('(prefers-reduced-motion: reduce)').matches ? 'auto' : 'smooth' });
+    });
+
+    const fadeObserver = new IntersectionObserver(entries => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) entry.target.classList.add('is-visible');
+      });
+    }, { threshold: 0.12 });
+
+    document.querySelectorAll('.fade-in').forEach(el => fadeObserver.observe(el));
+
+    const counterObserver = new IntersectionObserver(entries => {
+      entries.forEach(entry => {
+        if (!entry.isIntersecting || entry.target.dataset.done) return;
+        entry.target.dataset.done = 'true';
+        const target = Number(entry.target.dataset.target);
+        const decimals = Number(entry.target.dataset.decimals || 0);
+        const duration = 850;
+        const start = performance.now();
+        const step = now => {
+          const progress = Math.min(1, (now - start) / duration);
+          const eased = 1 - Math.pow(1 - progress, 3);
+          entry.target.textContent = (target * eased).toFixed(decimals);
+          if (progress < 1) requestAnimationFrame(step);
+          else entry.target.textContent = target.toFixed(decimals);
+        };
+        requestAnimationFrame(step);
+      });
+    }, { threshold: 0.45 });
+
+    document.querySelectorAll('.counter').forEach(counter => counterObserver.observe(counter));
+
+    const sectionIds = navLinks.map(link => link.getAttribute('href')).filter(Boolean);
+    const sections = sectionIds.map(id => document.querySelector(id)).filter(Boolean);
+    const activeObserver = new IntersectionObserver(entries => {
+      entries.forEach(entry => {
+        if (!entry.isIntersecting) return;
+        navLinks.forEach(link => link.removeAttribute('aria-current'));
+        navLinks
+          .filter(link => link.getAttribute('href') === `#${entry.target.id}`)
+          .forEach(link => link.setAttribute('aria-current', 'true'));
+      });
+    }, { rootMargin: '-35% 0px -58% 0px', threshold: 0 });
+
+    sections.forEach(section => activeObserver.observe(section));
+  </script>
+</body>
+</html>
